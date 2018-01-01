@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet"
+          href="./app/bower_components/bootstrap-css-only/css/bootstrap.min.css"/>
+    <link href="./app/bower_components/AngularJS-Toaster/toaster.css"
+          rel="stylesheet"/>
+    <title>Employees</title>
+</head>
+
+<body ng-app="employeeApp">
+
+<div ng-controller="employeeController as empCtrl" class="col-lg-12">
+    <div class="panel-body col-lg-6">
+        <button class="btn btn-default" type="submit" title="Add"
+                ng-click="empCtrl.getEmployees()">
+            GET Employees
+        </button>
+
+        <hr ng-if="empCtrl.employees && empCtrl.employees.length > 0"/>
+
+        <div ng-repeat="employee in empCtrl.employees">
+            <div ng-if="!employee.isEditMode">
+                <p>{{employee.id}}</p>
+                <p>{{employee.name}}</p>
+                <p>{{employee.company}}</p>
+            </div>
+            <div ng-if="employee.isEditMode">
+                <input type="text" ng-model="employee.id"/> <br/>
+                <input type="text" ng-model="employee.name"/> <br/>
+                <input type="text" ng-model="employee.company"/> <br/>
+            </div>
+            <a href="#" ng-if="!employee.isEditMode"
+               ng-click="employee.isEditMode = true" class="btn btn-default">
+                <span class="glyphicon glyphicon-pencil"></span> Edit </a>
+            <a href="#" ng-if="!employee.isEditMode"
+               ng-click="empCtrl.deleteEmployee(employee)" class="btn btn-default">
+                <span class="glyphicon glyphicon-trash"></span> Delete </a>
+            <a href="#" ng-if="employee.isEditMode"
+               ng-click="empCtrl.updateEmployee(employee)" class="btn btn-default">
+                <span class="glyphicon glyphicon-save"></span> save </a>
+        </div>
+
+        <hr/>
+
+        <div class="btn-group">
+            <a href="employee/downloadPdf" class="btn btn-primary"
+               target="_blank">Generate Pdf</a> <a href="employee/downloadExcel"
+                                                   class="btn btn-primary" target="_blank">Generate Excel</a>
+            <a href="employee/downloadCsv" class="btn btn-primary" target="_blank">Generate Csv</a>
+        </div>
+    </div>
+
+    <div class="panel-body col-lg-6">
+        <form class="form-horizontal" role="form"
+              ng-submit="empCtrl.saveEmployee(empCtrl.newEmployee)">
+            <div class="form-group">
+                <label for="employee-id">Employee id</label>
+                <input id="employee-id" type="text" ng-model="empCtrl.newEmployee.id" class="form-control"
+                       name="employee-id"/>
+            </div>
+            <div class="form-group">
+                <label for="name">Employee Name</label>
+                <input id="name" type="text" ng-model="empCtrl.newEmployee.name" class="form-control"
+                       name="name"/>
+            </div>
+            <div class="form-group">
+                <label for="company">Employee Company</label>
+                <input id="company" type="text" ng-model="empCtrl.newEmployee.company" class="form-control"
+                       name="company"/>
+            </div>
+            <button class="btn btn-default" type="submit" title="Add">
+                Add Employee
+            </button>
+        </form>
+    </div>
+</div>
+<toaster-container></toaster-container>
+
+<script type="text/javascript"
+        src="./app/bower_components/angular/angular.min.js"></script>
+<script
+        src="./app/bower_components/angular-animate/angular-animate.min.js"></script>
+<script src="./app/bower_components/AngularJS-Toaster/toaster.min.js"></script>
+<script type="text/javascript"
+        src="./app/bower_components/lodash/dist/lodash.min.js"></script>
+<script type="text/javascript"
+        src="./app/bower_components/restangular/dist/restangular.min.js"></script>
+<script type="text/javascript" src="./app/app.js"></script>
+<script type="text/javascript"
+        src="./app/common-services/restangular-services.js"></script>
+<script type="text/javascript" src="./app/controllers.js"></script>
+<script type="text/javascript" src="./app/services.js"></script>
+</body>
+
+</html>

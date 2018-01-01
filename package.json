@@ -1,0 +1,30 @@
+{
+  "name": "ng-spring-pdf-xl-csv",
+  "version": "1.0.0",
+  "description": "A Demo application with AngularJS and Spring Boot which generates pdf, excel and csv",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/javacodenet/ng-spring-pdf-xl-csv.git"
+  },
+  "keywords": [
+    "angularjs",
+    "springboot",
+    "spring",
+    "itext",
+    "apache poi",
+    "super csv"
+  ],
+  "author": "Javacodenet",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/javacodenet/ng-spring-pdf-xl-csv/issues"
+  },
+  "homepage": "https://github.com/javacodenet/ng-spring-pdf-xl-csv#readme",
+  "dependencies": {
+    "bower": "^1.8.0"
+  }
+}
